@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
         int song1Mp3Resource;
 
         //Arrays
+        ArrayList<String> songNames = new ArrayList<>();
+        ArrayList<String> artistName = new ArrayList<>();
 
+        ArrayList<Song> songs
     }
 }

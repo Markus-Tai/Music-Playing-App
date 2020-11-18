@@ -13,16 +13,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        String song1Name = "Song 1";
-        String songArtist = "Artist 1";
-        int song1ImageResource;
-        int song1Mp3Resource;
-
-        //Arrays
-        ArrayList<String> songNames = new ArrayList<>();
-        ArrayList<String> artistName = new ArrayList<>();
-
-        ArrayList<Song> songs
     }
+
+    //Properties
+    Playlist playlist = new Playlist();
+
 }

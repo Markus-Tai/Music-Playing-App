@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public class Playlist {
     String name;
-    ArrayList<Song> song;
+    ArrayList<Song> songs;
 
 }

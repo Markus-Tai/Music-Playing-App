@@ -1,6 +1,7 @@
 package com.example.musicplayer;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         connectXMLViews();
 
         setupRecyclerView();
+
+        setupButtonHandlers();
 
     }
 
@@ -112,8 +115,40 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    void setupButtonHandlers() {
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //This will be called when the previous button is tapped
+                System.out.println("Previous button tapped.");
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Next button tapped.");
+            }
+        });
+        
+        pauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Pause button tapped.");
+            }
+        });
+        playButton = findViewById(R.id.play);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Play button tapped");
+            }
+        });
+    }
     //Properties
     Playlist playlist = new Playlist();
+
+    //Adapter for recycler view
     SongAdapter songAdapter;
 
     // XML Views

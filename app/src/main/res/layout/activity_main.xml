@@ -26,7 +26,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/cover_image"
         app:layout_constraintTop_toTopOf="@id/songname_container"
-        android:background="@color/trasparentblack"
+        android:background="#FFD6D6"
         >
 
     </FrameLayout>
@@ -35,13 +35,12 @@
         android:id="@+id/songname_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:backgroundTint="#F79B9B"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@id/cover_image">
+        app:layout_constraintBottom_toBottomOf="@id/cover_image"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
         <TextView
             android:id="@+id/song_name_textview"
@@ -67,18 +66,18 @@
         android:id="@+id/song_controls_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cover_image"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cover_image">
 
         <ImageButton
             android:id="@+id/goBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#FFD6D6"
             app:srcCompat="@android:drawable/ic_media_previous" />
 
         <ImageButton
@@ -86,6 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#FFD6D6"
             app:srcCompat="@android:drawable/ic_media_pause" />
 
         <ImageButton
@@ -93,6 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#FFD6D6"
             app:srcCompat="@android:drawable/ic_media_play" />
 
         <ImageButton
@@ -100,6 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#FFD6D6"
             app:srcCompat="@android:drawable/ic_media_next" />
     </LinearLayout>
 

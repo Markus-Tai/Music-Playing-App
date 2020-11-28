@@ -13,9 +13,10 @@ public class SongViewHolder extends RecyclerView.ViewHolder{
     public SongViewHolder(@NonNull View itemView) {
         super(itemView);
         this.itemView = itemView;
-        this.imageView = itemView.findViewById(R.id.image_view);
-        this.songNameTextView = itemView.findViewById(R.id.song_name_textview);
-        this.artistNameTextView = itemView.findViewById(R.id.artist_name_textview);
+        imageView = itemView.findViewById(R.id.image_view);
+        songNameTextView = itemView.findViewById(R.id.song_name_textview);
+        artistNameTextView = itemView.findViewById(R.id.artist_name_textview);
+        selectedBackgroundView = itemView.findViewById(R.id.selected_background_view);
     }
 
     //Properties
@@ -23,4 +24,5 @@ public class SongViewHolder extends RecyclerView.ViewHolder{
     ImageView imageView;
     TextView songNameTextView;
     TextView artistNameTextView;
+    View selectedBackgroundView;
 }

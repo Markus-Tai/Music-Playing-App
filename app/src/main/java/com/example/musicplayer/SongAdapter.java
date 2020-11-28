@@ -14,11 +14,12 @@ import java.util.ArrayList;
 public class SongAdapter extends RecyclerView.Adapter<SongViewHolder> {
 
     //Constructor
-    SongAdapter(@NonNull Context context, @NonNull ArrayList<Song> songs) {
+    SongAdapter(@NonNull Context context, @NonNull ArrayList<Song> songs, @NonNull MainActivity mainActivity) {
         this.context = context;
         this.songs = songs;
+        this.mainActivity = mainActivity;
 
-    }
+}
 
     // Overridden methods
     @NonNull
@@ -39,6 +40,27 @@ public class SongAdapter extends RecyclerView.Adapter<SongViewHolder> {
         holder.imageView.setImageResource(song.imageResource);
         holder.songNameTextView.setText(song.songName);
         holder.artistNameTextView.setText(song.artistName);
+
+        // Set the selected background to be visible/invisible
+        if(position == mainActivity.currentSongIndex) {
+            // Current song index is at this position
+            holder.selectedBackgroundView.setVisibility(View.VISIBLE);
+        }
+        else {
+            // Current song index is not at this position
+            holder.selectedBackgroundView.setVisibility(View.INVISIBLE);
+        }
+
+        // Add button tap handler for this song item
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // User tapped on this item
+                System.out.println("User tapped on song at index " + position);
+                mainActivity.onUserSelectedSongAtPosition(position);
+            }
+        });
+
 ;
 
     }
@@ -52,4 +74,5 @@ public class SongAdapter extends RecyclerView.Adapter<SongViewHolder> {
     // Properties
     Context context;
     ArrayList<Song> songs;
+    MainActivity mainActivity;
 }

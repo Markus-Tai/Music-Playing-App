@@ -1,5 +1,6 @@
 package com.example.musicplayer;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,7 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 
+
+
 public class MainActivity extends AppCompatActivity {
+
+    //Tells Main Activity that user has selected song at position
+    void onUserSelectedSongAtPosition(int position) {
+        switchSong(currentSongIndex, position);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,10 +118,18 @@ public class MainActivity extends AppCompatActivity {
         songsRecyclerView.setLayoutManager(layoutManager);
 
         //Connect the adapter to the recyclerView
-        songAdapter = new SongAdapter(this, playlist.songs);
+        songAdapter = new SongAdapter(this, playlist.songs, this);
         songsRecyclerView.setAdapter(songAdapter);
 
     }
+
+    void displayCurrentSong() {
+        Song currentSong = playlist.songs.get(currentSongIndex);
+        imageView.setImageResource(currentSong.imageResource);
+        songNameTextView.setText(currentSong.songName);
+        artistNameTextView.setText(currentSong.artistName);
+    }
+
 
     void setupButtonHandlers() {
         previousButton.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //This will be called when the previous button is tapped
                 System.out.println("Previous button tapped.");
+                if (currentSongIndex -1 >= 0) {
+                    switchSong(currentSongIndex, currentSongIndex - 1);
+                }
             }
         });
 
@@ -128,28 +147,106 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 System.out.println("Next button tapped.");
+                if (currentSongIndex + 1 < playlist.songs.size()) {
+                    switchSong(currentSongIndex, currentSongIndex + 1);
+                }
             }
+
         });
         
         pauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("Pause button tapped.");
+                pauseCurrentSong();
             }
         });
-        playButton = findViewById(R.id.play);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("Play button tapped");
+                playCurrentSong();
             }
         });
     }
+
+    void switchSong(int fromIndex, int toIndex) {
+        // Tell song adapter to refresh currently selected song
+        songAdapter.notifyItemChanged(currentSongIndex);
+        //update current song index
+        currentSongIndex = toIndex;
+
+        //Display song
+        displayCurrentSong();
+
+        // Tell song adapter to refresh the newly selected song
+        songAdapter.notifyItemChanged(currentSongIndex);
+
+        //Scroll to make current song visible in recyclerview
+        songsRecyclerView.scrollToPosition(currentSongIndex);
+
+        // Check if a current song is playing
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            // A song is playing, pause the current song
+            pauseCurrentSong();
+
+            // Invalidate the media player
+            mediaPlayer = null;
+
+            // Play the new current song
+            playCurrentSong();
+
+
+        }
+        else {
+            // A song is not currently playing, invalidate the media player
+            mediaPlayer = null;
+
+        }
+
+        // Invalidate the media player
+        mediaPlayer = null;
+    }
+
+    void pauseCurrentSong() {
+        System.out.println("Pausing song at index " + currentSongIndex);
+        // Check if media player already exists
+        if (mediaPlayer != null) {
+            // Media player exists, go ahead and pause it
+            mediaPlayer.pause();
+
+        }
+    }
+
+    void playCurrentSong() {
+        System.out.println("Playing song at index " + currentSongIndex);
+        // Check if mediaPlayer already exists
+        if (mediaPlayer == null) {
+            // mediaPlayer has not been created
+
+            // Get the song object corresponding to the current song
+            Song currentSong = playlist.songs.get(currentSongIndex);
+
+            // Create a media player for the MP3 resource of the current song
+            mediaPlayer = MediaPlayer.create(MainActivity.this, currentSong.mp3Resource );
+
+        }
+        // Play the song
+        mediaPlayer.start();
+    }
+
+
+
     //Properties
     Playlist playlist = new Playlist();
+    Integer currentSongIndex = 0;
 
     //Adapter for recycler view
     SongAdapter songAdapter;
+
+    // Media player to play MP#
+    MediaPlayer mediaPlayer = null;
+
 
     // XML Views
     RecyclerView songsRecyclerView;

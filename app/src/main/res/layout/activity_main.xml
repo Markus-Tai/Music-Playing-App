@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintDimensionRatio="16:10"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,25 +22,24 @@
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#6DFFB6C1"
+        app:layout_constraintBottom_toBottomOf="@id/cover_image"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/cover_image"
-        app:layout_constraintTop_toTopOf="@id/songname_container"
-        android:background="#FFD6D6"
-        >
+        app:layout_constraintTop_toTopOf="@id/songname_container">
 
     </FrameLayout>
 
     <LinearLayout
         android:id="@+id/songname_container"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="#F79B9B"
+        android:backgroundTint="#7CFFB6C1"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/cover_image"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintEnd_toEndOf="@id/cover_image"
+        app:layout_constraintStart_toStartOf="@id/cover_image">
 
         <TextView
             android:id="@+id/song_name_textview"
@@ -67,8 +66,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cover_image">
 
